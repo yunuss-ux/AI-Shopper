@@ -1,9 +1,9 @@
 # AI Shopper - Akıllı Alışveriş Asistanı
 
-AI Shopper, Google Gemini API ve SerpApi (Google Shopping) kullanarak, kullanıcıların bütçelerine ve tercihlerine en uygun ürünleri  bulan, yapay zeka destekli gelişmiş bir alışveriş asistanıdır.
+AI Shopper, SerpApi (Google Shopping) kullanarak, kullanıcıların bütçelerine ve tercihlerine en uygun ürünleri bulan, yapay zeka destekli gelişmiş bir alışveriş asistanıdır.
 
 ## 🚀 Proje Hakkında
-Bu proje, kullanıcıdan alınan bütçe ve tercih bilgilerini analiz eder, Google Shopping üzerinden güncel fiyatlı ve stoklu ürünleri tarar ve ardından yapay zeka aracılığıyla bu cihazları teknik özelliklerine göre karşılaştırarak kullanıcıya en doğru öneriyi sunar.
+Bu proje, kullanıcıdan alınan bütçe ve tercih bilgilerini analiz eder, Google Shopping üzerinden güncel fiyatlı ve stoklu ürünleri tarar ve ardından yapay zeka (Groq API) aracılığıyla bu cihazları teknik özelliklerine göre karşılaştırarak kullanıcıya en doğru öneriyi sunar.
 
 ## 🛠 Kullanılan Teknolojiler
 - **Framework:** Next.js
@@ -22,19 +22,25 @@ cd AI-Shopper
 npm install
 
 2. Adım: API Ayarları (Çok Önemli!)
-Proje ana dizininde .env adında bir dosya oluşturun ve içine kendi API anahtarlarınızı yazın.
+Proje ana dizininde .env adında bir dosya oluşturun ve içine kendi API anahtarlarınızı yazın:
 
-## 🔑 API Anahtarlarını Edinme
+GROQ_API_KEY=senin_groq_api_keyin
+SERPAPI_API_KEY=senin_serpapi_anahtarın
+
+🔑 API Anahtarlarını Edinme
 Uygulamanın tam fonksiyonel çalışabilmesi için aşağıdaki iki API anahtarına ihtiyacınız var:
 
-1. **SerpApi (Google Shopping Arama Motoru):** - [SerpApi'ye gidin](https://serpapi.com/) ve ücretsiz bir hesap oluşturun.
-   - Dashboard kısmından `API Key`inizi kopyalayın.
-   - *Kullanım amacı:* Google Shopping sonuçlarını taramak ve ürün bilgilerini çekmek için gereklidir.
+SerpApi (Google Shopping Arama Motoru): SerpApi'ye gidin ve ücretsiz bir hesap oluşturun.
 
-2. **Groq API (veya Gemini API):**
-   - [Groq Console](https://console.groq.com/) üzerinden ücretsiz API anahtarınızı oluşturun.
-   - *Kullanım amacı:* Ürünleri yapay zeka ile analiz edip size en mantıklı önerileri sunmak için gereklidir.
+Dashboard kısmından API Keyinizi kopyalayın.
 
+Kullanım amacı: Google Shopping sonuçlarını taramak ve ürün bilgilerini çekmek için gereklidir.
+
+Groq API:
+
+Groq Console üzerinden ücretsiz API anahtarınızı oluşturun.
+
+Kullanım amacı: Ürünleri yapay zeka ile analiz edip size en mantıklı önerileri sunmak için gereklidir.
 
 3. Adım: Başlatma
 Projenin ana dizininde bulunan start.bat dosyasına çift tıklamanız yeterlidir. Bu dosya, arka planda gerekli tüm sunucuları sizin yerinize otomatik olarak başlatacaktır.
