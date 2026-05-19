@@ -1,0 +1,143 @@
+/* ================================================================
+   index.css  —  Global styles for ai-shop frontend
+   Import order matters: Google Fonts → Tailwind → custom utilities
+   ================================================================ */
+
+/* 1. Google Fonts — Kanit (weights 300–900, all needed for font-black headlines) */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* 2. Tailwind base layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   BASE RESET
+   ================================================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  #root {
+    /* Dark brand background — must match every section that sits outside
+       a white ServicesSection so there are no white flashes on scroll. */
+    background-color: #0C0C0C;
+    color: #D7E2EA;
+    font-family: 'Kanit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal scroll caused by marquee overflow */
+    overflow-x: hidden;
+  }
+
+  /* Smooth scroll for any anchor navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Remove default list styles used inside components */
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  /* Sensible image defaults */
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Inherit font in form elements (Tailwind preflight may override, this is
+     a failsafe for any future form usage) */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+/* ================================================================
+   UTILITY: .hero-heading
+   Applies the signature gradient text effect.
+   Used on <h1> in HeroSection and <h2> headings in About/Projects.
+   ================================================================ */
+@layer utilities {
+  .hero-heading {
+    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* fallback for non-webkit */
+  }
+
+  /* Clip horizontal overflow at the wrapper level (used on hero and marquee) */
+  .clip-x {
+    overflow-x: clip;
+  }
+
+  /* Will-change hint for GPU-composited animated elements (marquee, cards) */
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
+/* ================================================================
+   COMPONENT LAYER — shared resets that Tailwind doesn't cover
+   ================================================================ */
+@layer components {
+  /* ContactButton — gradient pill.
+     The box-shadow values are defined here because Tailwind's shadow
+     utilities don't support the multi-layer inset + outer syntax needed. */
+  .btn-cta {
+    @apply rounded-full font-medium uppercase tracking-widest text-white;
+    background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
+    box-shadow:
+      0px 4px 4px rgba(181, 1, 167, 0.25),
+      inset 4px 4px 12px #7721B1;
+    outline: 2px solid white;
+    outline-offset: -3px;
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+  .btn-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  .btn-cta:active {
+    transform: translateY(0);
+  }
+
+  /* LiveProjectButton — ghost pill */
+  .btn-ghost {
+    @apply rounded-full border-2 font-medium uppercase tracking-widest;
+    border-color: #D7E2EA;
+    color: #D7E2EA;
+    transition: background-color 200ms ease;
+  }
+  .btn-ghost:hover {
+    background-color: rgba(215, 226, 234, 0.10);
+  }
+
+  /* ServicesSection white card — pulled into a component so rounded
+     overrides apply consistently across breakpoints. */
+  .services-card {
+    @apply bg-white text-[#0C0C0C];
+    border-radius: 40px 40px 0 0;
+  }
+
+  /* ProjectsSection dark card — sticky stacking cards */
+  .product-card {
+    @apply rounded-[40px] sm:rounded-[50px] md:rounded-[60px];
+    border: 2px solid #D7E2EA;
+    background: #0C0C0C;
+    will-change: transform;
+  }
+}
