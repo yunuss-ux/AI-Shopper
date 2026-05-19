@@ -1,1 +1,1 @@
-# AI-assistant
+# AI-Shopper
